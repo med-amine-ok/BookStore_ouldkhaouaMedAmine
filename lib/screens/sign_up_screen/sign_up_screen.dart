@@ -15,17 +15,17 @@ import 'widgets/custom_text_field.dart';
 import 'widgets/loading_overlay.dart';
 import 'widgets/password_strength_indicator.dart';
 import 'widgets/terms_checkbox.dart';
-import '../../services/auth_service.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../providers/auth_provider.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  ConsumerState<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
-  final _authService = AuthService();
+class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   final _scrollController = ScrollController();
   final _fullNameController = TextEditingController();
@@ -33,7 +33,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
-  bool _isLoading = false;
   bool _acceptTerms = false;
   bool _showPasswordRequirements = false;
   String _currentPassword = '';
@@ -54,7 +53,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       backgroundColor: AppTheme.primaryBackgroundLight,
       appBar: _buildAppBar(),
       body: LoadingOverlay(
-        isLoading: _isLoading,
+        isLoading: ref.watch(isLoadingProvider),
         message: 'Creating your account...',
         child: _buildBody(),
       ),
@@ -314,11 +313,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   bool get _canCreateAccount {
+    final isLoading = ref.read(isLoadingProvider);
     return _acceptTerms &&
         _emailController.text.isNotEmpty &&
         _passwordController.text.isNotEmpty &&
         _confirmPasswordController.text.isNotEmpty &&
-        !_isLoading;
+        !isLoading;
   }
 
   String? _validateFullName(String? value) {
@@ -387,32 +387,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Future<void> _handleSignUp() async {
     if (!_formKey.currentState!.validate()) return;
 
-    setState(() => _isLoading = true);
+    final notifier = ref.read(authProvider.notifier);
+    await notifier.signUpWithEmail(
+      email: _emailController.text.trim(),
+      password: _passwordController.text,
+      fullName: _fullNameController.text.trim(),
+    );
 
-    try {
-      final response = await _authService.signUpWithEmail(
-        email: _emailController.text.trim(),
-        password: _passwordController.text,
-        fullName: _fullNameController.text.trim(),
+    if (!mounted) return;
+
+    final authState = ref.read(authProvider);
+
+    if (authState.isAuthenticated) {
+      _showSuccessDialog();
+    } else if (authState.errorMessage != null) {
+      _showErrorDialog(authState.errorMessage!);
+    } else {
+      _showErrorDialog(
+        'Account created. Please verify your email, then sign in.',
       );
-
-      if (!mounted) return;
-
-      // If email confirmation is enabled: user may be created without a session
-      if (response.user != null && response.session == null) {
-        _showErrorDialog(
-          'Account created. Please verify your email, then sign in.',
-        );
-        return;
-      }
-
-      if (response.user != null) {
-        _showSuccessDialog();
-      }
-    } catch (e) {
-      if (mounted) _showErrorDialog(e);
-    } finally {
-      if (mounted) setState(() => _isLoading = false);
     }
   }
 

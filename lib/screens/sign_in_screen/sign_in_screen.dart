@@ -10,26 +10,23 @@ import '../onboarding_screen/onboarding_screen.dart';
 import '../sign_up_screen/sign_up_screen.dart';
 import 'widgets/custom_text_field.dart';
 import 'widgets/loading_overlay.dart';
-import '../../services/auth_service.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../providers/auth_provider.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInScreen extends ConsumerStatefulWidget {
   const SignInScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  ConsumerState<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
-  final _authService = AuthService();
+class _SignInScreenState extends ConsumerState<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
   final _scrollController = ScrollController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  bool _isLoading = false;
   bool _rememberMe = false;
-
-
 
   @override
   void dispose() {
@@ -38,70 +35,37 @@ class _SignInScreenState extends State<SignInScreen> {
     _passwordController.dispose();
     super.dispose();
   }
-  
+
   Future<void> _signIn() async {
     if (!_formKey.currentState!.validate()) return;
 
-    setState(() => _isLoading = true);
+    // Use Riverpod auth notifier
+    final notifier = ref.read(authProvider.notifier);
+    await notifier.signInWithEmail(
+      email: _emailController.text.trim(),
+      password: _passwordController.text,
+    );
 
-    try {
-      final response = await _authService.signInWithEmail(
-        email: _emailController.text.trim(),
-        password: _passwordController.text,
+    final authState = ref.read(authProvider);
+    if (authState.isAuthenticated && mounted) {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        '/home-screen',
+        (route) => false,
       );
-
-      if (response.user != null && mounted) {
-        // Navigate to home screen
-        Navigator.pushNamedAndRemoveUntil(context, '/home-screen', (route) => false);
-        
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('✅ Signed in successfully!'),
-            backgroundColor: Colors.green,
-          ),
-        );
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('❌ Sign in failed: ${e.toString()}'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    } finally {
-      if (mounted) setState(() => _isLoading = false);
-    }
-  }
-
-  Future<void> _resetPassword() async {
-    if (_emailController.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter your email first')),
+        const SnackBar(
+          content: Text('✅ Signed in successfully!'),
+          backgroundColor: Colors.green,
+        ),
       );
-      return;
-    }
-
-    try {
-      await _authService.resetPassword(_emailController.text.trim());
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('📧 Password reset email sent!'),
-            backgroundColor: Colors.blue,
-          ),
-        );
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('❌ Failed to send reset email: ${e.toString()}'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
+    } else if (authState.errorMessage != null && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('❌ Sign in failed: ${authState.errorMessage}'),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
   }
 
@@ -112,7 +76,7 @@ class _SignInScreenState extends State<SignInScreen> {
       backgroundColor: AppTheme.primaryBackgroundLight,
       appBar: _buildAppBar(),
       body: LoadingOverlay(
-        isLoading: _isLoading,
+        isLoading: ref.watch(isLoadingProvider),
         message: 'Signing you in...',
         child: _buildBody(),
       ),
@@ -388,9 +352,10 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   bool get _canSignIn {
+    final isLoading = ref.read(isLoadingProvider);
     return _emailController.text.isNotEmpty &&
         _passwordController.text.isNotEmpty &&
-        !_isLoading;
+        !isLoading;
   }
 
   String? _validateEmail(String? value) {
@@ -411,7 +376,6 @@ class _SignInScreenState extends State<SignInScreen> {
     if (value?.isEmpty ?? true) return 'Password is required';
     return null;
   }
-
 
   void _showPasswordResetSentDialog() {
     showDialog(
@@ -598,7 +562,6 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
     );
   }
-  
 
   Widget _buildErrorTitle() {
     return Row(

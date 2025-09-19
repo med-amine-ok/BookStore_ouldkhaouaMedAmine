@@ -10,15 +10,14 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // await dotenv.load(fileName: "lib/.env");
+  await dotenv.load(fileName: "lib/.env");
 
-  // final supabaseUrl = dotenv.env['SUPABASE_URL']!;
-  // final supabaseAnonKey = dotenv.env['SUPABASE_ANON_KEY']!;
+  final supabaseUrl = dotenv.env['SUPABASE_URL']!;
+  final supabaseAnonKey = dotenv.env['SUPABASE_ANON_KEY']!;
 
   await Supabase.initialize(
-    url: 'https://okdiohuqbxpsygvcgfte.supabase.co',
-    anonKey:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9rZGlvaHVxYnhwc3lndmNnZnRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc5MzI2NDgsImV4cCI6MjA3MzUwODY0OH0.AClFxgdDXAjbzNV2RixjkJMX0Vj2LKVShY-5CiVctCk',
+    url: supabaseUrl,
+    anonKey: supabaseAnonKey,
   );
 
   bool hasShownError = false;

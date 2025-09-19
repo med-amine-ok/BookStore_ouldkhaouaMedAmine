@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import '../forgot_password_screen/forgot_password_screen.dart';
 import '../../core/app_export.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/custom_icon_widget.dart';
@@ -294,7 +294,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   Widget _buildForgotPasswordLink() {
     return GestureDetector(
-      onTap: _resetPassword,
+      onTap: _navigateToForgotPassword,
       child: Text(
         'Forgot Password?',
         style: GoogleFonts.inter(
@@ -381,6 +381,10 @@ class _SignInScreenState extends State<SignInScreen> {
       context,
       MaterialPageRoute(builder: (context) => const SignUpScreen()),
     );
+  }
+
+  void _navigateToForgotPassword() {
+    Navigator.pushNamed(context, '/forgot-password-screen');
   }
 
   bool get _canSignIn {

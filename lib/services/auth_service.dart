@@ -4,18 +4,11 @@ import 'package:flutter/foundation.dart';
 import './storage_service.dart';
 
 class AuthService {
+  
   final SupabaseClient _supabase = Supabase.instance.client;
-
-  // Get current user
   User? get currentUser => _supabase.auth.currentUser;
-
-  // Check if user is authenticated
   bool get isAuthenticated => currentUser != null;
-
-  // Get current session
   Session? get currentSession => _supabase.auth.currentSession;
-
-  // Auth state changes stream
   Stream<AuthState> get authStateChanges => _supabase.auth.onAuthStateChange;
 
   // Sign up with email and password

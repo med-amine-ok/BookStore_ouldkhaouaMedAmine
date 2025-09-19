@@ -62,6 +62,7 @@ class _FeaturedBooksCarouselState extends State<FeaturedBooksCarousel> {
         SizedBox(height: 2.h),
         SizedBox(
           height: 34.h,
+
           child: PageView.builder(
             controller: _pageController,
             itemBuilder: (context, index) {
@@ -163,63 +164,69 @@ class BookCard extends StatelessWidget {
       onLongPress: onWishlistToggle,
       child: Hero(
         tag: 'book_${book['id']}',
-        child: Card(
-          elevation: 4,
-          shadowColor: AppTheme.shadowBase.withOpacity(0.25),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18),
-          ),
-          child: Column(
-            children: [
-              Expanded(flex: 3, child: BookCover(imageUrl: book['coverImage'])),
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: EdgeInsets.all(3.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      BookInfo(
-                        title: book['title'] ?? 'Unknown Title',
-                        author: book['author'] ?? 'Unknown Author',
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            '\$${book['price']?.toString() ?? 'Price not available'}',
-                            style: GoogleFonts.inter(
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.w700,
-                              color: AppTheme.CafeAccent,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: onWishlistToggle,
-                            child: AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 200),
-                              child: CustomIconWidget(
-                                key: ValueKey(
-                                  'wishlist_${book['id']}_$isInWishlist',
-                                ),
-                                iconName: isInWishlist
-                                    ? 'favorite'
-                                    : 'favorite_border',
-                                color: isInWishlist
-                                    ? AppTheme.CafeAccent
-                                    : AppTheme.textMuted,
-                                size: 18,
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 2.w), 
+          child: Card(
+            elevation: 4,
+            shadowColor: AppTheme.shadowBase.withOpacity(0.25),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18),
+            ),
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: BookCover(imageUrl: book['coverImage']),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: EdgeInsets.all(3.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        BookInfo(
+                          title: book['title'] ?? 'Unknown Title',
+                          author: book['author'] ?? 'Unknown Author',
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '\$${book['price']?.toString() ?? 'Price not available'}',
+                              style: GoogleFonts.inter(
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w700,
+                                color: AppTheme.CafeAccent,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            GestureDetector(
+                              onTap: onWishlistToggle,
+                              child: AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 200),
+                                child: CustomIconWidget(
+                                  key: ValueKey(
+                                    'wishlist_${book['id']}_$isInWishlist',
+                                  ),
+                                  iconName: isInWishlist
+                                      ? 'favorite'
+                                      : 'favorite_border',
+                                  color: isInWishlist
+                                      ? AppTheme.CafeAccent
+                                      : AppTheme.textMuted,
+                                  size: 25,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -269,7 +276,7 @@ class BookInfo extends StatelessWidget {
         Text(
           title,
           style: GoogleFonts.inter(
-            fontSize: 15.sp,
+            fontSize: 16.sp,
             fontWeight: FontWeight.w600,
             color: AppTheme.textPrimary,
           ),
@@ -280,7 +287,7 @@ class BookInfo extends StatelessWidget {
         Text(
           author,
           style: GoogleFonts.inter(
-            fontSize: 13.sp,
+            fontSize: 14.sp,
             fontWeight: FontWeight.w400,
             color: AppTheme.textSecondary,
           ),

@@ -55,13 +55,7 @@ class BookInfoSection extends StatelessWidget {
                   color: AppTheme.textPrimary,
                 ),
               ),
-              SizedBox(width: 2.w),
-              Text(
-                '(${book['reviewCount']} reviews)',
-                style: AppTheme.lightTheme.textTheme.bodyMedium?.copyWith(
-                  color: AppTheme.textSecondary,
-                ),
-              ),
+              SizedBox(width: 2.w),          
             ],
           ),
           SizedBox(height: 3.h),

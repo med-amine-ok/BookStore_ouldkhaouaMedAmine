@@ -244,7 +244,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         SettingItemWidget(
           title: 'About BookStore',
-          subtitle: 'Version 1.0.0',
+          subtitle: 'Learn more about us',
           iconName: 'info_outline',
           onTap: _showAboutDialog,
         ),
@@ -553,7 +553,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Version 1.0.0',
+              'Latest Version',
               style: AppTheme.lightTheme.textTheme.bodyLarge?.copyWith(
                 fontWeight: FontWeight.w600,
               ),

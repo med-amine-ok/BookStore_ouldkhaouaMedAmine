@@ -9,8 +9,9 @@ import '../presentation/sign_in_screen/sign_in_screen.dart';
 import '../presentation/onboarding_screen/onboarding_screen.dart';
 import '../presentation/onboarding_screen/splash_screen.dart';
 import '../presentation/all_vendor_screen/all_vendor.dart';
+import '../presentation/forgot_password_screen/forgot_password_screen.dart';
+
 class AppRoutes {
-  
   static const String initial = '/';
   static const String splash = '/splash-screen';
   static const String onboarding = '/onboarding-screen';
@@ -22,6 +23,7 @@ class AppRoutes {
   static const String profile = '/profile-screen';
   static const String bookDetail = '/book-detail-screen';
   static const String allVendor = '/all-vendor-screen';
+  static const String forgotPassword = '/forgot-password-screen';
 
   static Map<String, WidgetBuilder> routes = {
     initial: (context) => const SplashScreen(),
@@ -35,5 +37,6 @@ class AppRoutes {
     signIn: (context) => const SignInScreen(),
     category: (context) => const CategoryScreen(),
     allVendor: (context) => const AllVendorScreen(),
+    forgotPassword: (context) => const ForgotPasswordScreen(),
   };
 }

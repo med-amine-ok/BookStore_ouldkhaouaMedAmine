@@ -6,8 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../core/app_export.dart';
 import '../sign_in_screen/sign_in_screen.dart';
-import './widgets/custom_text_field.dart';
-import './widgets/loading_overlay.dart';
+import 'widgets/custom_text_field.dart';
+import 'widgets/loading_overlay.dart';
 import '../../providers/auth_provider.dart';
 
 class ForgotPasswordScreen extends ConsumerWidget {

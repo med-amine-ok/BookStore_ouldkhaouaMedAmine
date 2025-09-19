@@ -6,7 +6,7 @@ import '../../../core/app_export.dart';
 import '../../../theme/app_theme.dart';
 import '../../../widgets/custom_icon_widget.dart';
 
-/// Sort options for wishlist items
+// Sort options for wishlist items
 enum WishlistSortOption {
   dateAdded,
   titleAZ,
@@ -16,7 +16,7 @@ enum WishlistSortOption {
   author,
 }
 
-/// Sort widget for wishlist items
+// Sort widget for wishlist items
 class WishlistSortWidget extends StatelessWidget {
   final WishlistSortOption currentSort;
   final ValueChanged<WishlistSortOption> onSortChanged;

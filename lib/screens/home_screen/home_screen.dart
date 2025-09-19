@@ -7,9 +7,9 @@ import '../../theme/app_theme.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_bottom_bar.dart';
 import '../../widgets/custom_icon_widget.dart';
-import './widgets/featured_books_carousel.dart';
-import './widgets/search_overlay.dart';
-import './widgets/vendor_showcase.dart';
+import 'widgets/featured_books_carousel.dart';
+import 'widgets/search_overlay.dart';
+import 'widgets/vendor_showcase.dart';
 import '../../services/auth_service.dart';
 import '../../services/data_service.dart';
 

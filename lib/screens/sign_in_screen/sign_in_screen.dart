@@ -8,8 +8,8 @@ import '../../theme/app_theme.dart';
 import '../../widgets/custom_icon_widget.dart';
 import '../onboarding_screen/onboarding_screen.dart';
 import '../sign_up_screen/sign_up_screen.dart';
-import './widgets/custom_text_field.dart';
-import './widgets/loading_overlay.dart';
+import 'widgets/custom_text_field.dart';
+import 'widgets/loading_overlay.dart';
 import '../../services/auth_service.dart';
 
 class SignInScreen extends StatefulWidget {

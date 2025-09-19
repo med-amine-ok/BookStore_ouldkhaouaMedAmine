@@ -3,8 +3,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../core/app_export.dart';
 
-/// Hero animated book cover widget for book detail screen
-/// Provides smooth transition from previous screen with parallax effect
+
 class BookCoverHero extends StatelessWidget {
   final Map<String, dynamic> book;
   final ScrollController scrollController;

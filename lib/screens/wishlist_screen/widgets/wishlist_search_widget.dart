@@ -6,7 +6,7 @@ import '../../../core/app_export.dart';
 import '../../../theme/app_theme.dart';
 import '../../../widgets/custom_icon_widget.dart';
 
-/// Search widget for filtering wishlist items
+
 class WishlistSearchWidget extends StatefulWidget {
   final String searchQuery;
   final ValueChanged<String> onSearchChanged;

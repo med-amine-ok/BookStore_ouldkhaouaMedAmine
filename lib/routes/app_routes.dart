@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import '../presentation/wishlist_screen/wishlist_screen.dart';
-import '../presentation/profile_screen/profile_screen.dart';
-import '../presentation/book_detail_screen/book_detail_screen.dart';
-import '../presentation/home_screen/home_screen.dart';
-import '../presentation/sign_up_screen/sign_up_screen.dart';
-import '../presentation/category_screen/category_screen.dart';
-import '../presentation/sign_in_screen/sign_in_screen.dart';
-import '../presentation/onboarding_screen/onboarding_screen.dart';
-import '../presentation/onboarding_screen/splash_screen.dart';
-import '../presentation/all_vendor_screen/all_vendor.dart';
-import '../presentation/forgot_password_screen/forgot_password_screen.dart';
+import '../screens/wishlist_screen/wishlist_screen.dart';
+import '../screens/profile_screen/profile_screen.dart';
+import '../screens/book_detail_screen/book_detail_screen.dart';
+import '../screens/home_screen/home_screen.dart';
+import '../screens/sign_up_screen/sign_up_screen.dart';
+import '../screens/category_screen/category_screen.dart';
+import '../screens/sign_in_screen/sign_in_screen.dart';
+import '../screens/onboarding_screen/onboarding_screen.dart';
+import '../screens/onboarding_screen/splash_screen.dart';
+import '../screens/all_vendor_screen/all_vendor.dart';
+import '../screens/forgot_password_screen/forgot_password_screen.dart';
 
 class AppRoutes {
   static const String initial = '/';

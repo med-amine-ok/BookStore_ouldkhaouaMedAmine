@@ -5,11 +5,11 @@ import '../../core/app_export.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_bottom_bar.dart';
-import './widgets/book_card_widget.dart';
-import './widgets/category_chip_widget.dart';
-import './widgets/empty_state_widget.dart';
-import './widgets/filter_bottom_sheet_widget.dart';
-import './widgets/quick_actions_widget.dart';
+import 'widgets/book_card_widget.dart';
+import 'widgets/category_chip_widget.dart';
+import 'widgets/empty_state_widget.dart';
+import 'widgets/filter_bottom_sheet_widget.dart';
+import 'widgets/quick_actions_widget.dart';
 import '../../services/data_service.dart';
 import '../../services/auth_service.dart';
 class CategoryScreen extends StatefulWidget {

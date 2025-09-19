@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:google_fonts/google_fonts.dart'; // Add this import
+import 'package:google_fonts/google_fonts.dart'; 
 
 import '../../../core/app_export.dart';
 import '../../../theme/app_theme.dart';
 import '../../../widgets/custom_icon_widget.dart';
 import '../../../widgets/custom_image_widget.dart';
 
-/// Individual wishlist item widget with book details and remove functionality
+
 class WishlistItemWidget extends StatefulWidget {
   final Map<String, dynamic> book;
   final VoidCallback? onRemove;

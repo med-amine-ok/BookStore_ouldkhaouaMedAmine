@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../core/app_export.dart';
-import './widgets/book_cover_hero.dart';
-import './widgets/book_detail_tabs.dart';
-import './widgets/book_info_section.dart';
-import './widgets/related_books_section.dart';
-import './widgets/sticky_bottom_bar.dart';
+import 'widgets/book_cover_hero.dart';
+import 'widgets/book_detail_tabs.dart';
+import 'widgets/book_info_section.dart';
+import 'widgets/related_books_section.dart';
+import 'widgets/sticky_bottom_bar.dart';
 import '../../services/data_service.dart';
 
 class BookDetailScreen extends StatefulWidget {

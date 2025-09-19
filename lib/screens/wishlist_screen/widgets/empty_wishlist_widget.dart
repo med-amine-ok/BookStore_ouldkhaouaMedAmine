@@ -6,7 +6,7 @@ import '../../../core/app_export.dart';
 import '../../../theme/app_theme.dart';
 import '../../../widgets/custom_icon_widget.dart';
 
-/// Empty state widget for wishlist screen
+
 class EmptyWishlistWidget extends StatelessWidget {
   final VoidCallback? onBrowseBooks;
 

@@ -3,7 +3,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../core/app_export.dart';
 
-/// Tabbed interface for book details with Description, Reviews, and Details sections
+
 class BookDetailTabs extends StatefulWidget {
   final Map<String, dynamic> book;
 

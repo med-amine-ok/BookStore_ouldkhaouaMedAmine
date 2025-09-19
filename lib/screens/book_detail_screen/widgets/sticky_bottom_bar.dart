@@ -3,8 +3,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../core/app_export.dart';
 
-/// Sticky bottom bar with price and purchase button
-/// Appears when scrolling past initial view
+
 class StickyBottomBar extends StatelessWidget {
   final Map<String, dynamic> book;
   final bool isVisible;

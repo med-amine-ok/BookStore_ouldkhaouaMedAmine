@@ -4,12 +4,12 @@ import 'package:sizer/sizer.dart';
 import '../../core/app_export.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_bottom_bar.dart';
-import './widgets/avatar_selection_bottom_sheet.dart';
-import './widgets/order_history_item_widget.dart';
-import './widgets/preference_chip_widget.dart';
-import './widgets/profile_field_widget.dart';
-import './widgets/profile_header_widget.dart';
-import './widgets/setting_item_widget.dart';
+import 'widgets/avatar_selection_bottom_sheet.dart';
+import 'widgets/order_history_item_widget.dart';
+import 'widgets/preference_chip_widget.dart';
+import 'widgets/profile_field_widget.dart';
+import 'widgets/profile_header_widget.dart';
+import 'widgets/setting_item_widget.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../services/auth_service.dart';
 

@@ -7,10 +7,10 @@ import '../../theme/app_theme.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_bottom_bar.dart';
 import '../../widgets/custom_icon_widget.dart';
-import './widgets/empty_wishlist_widget.dart';
-import './widgets/wishlist_item_widget.dart';
-import './widgets/wishlist_search_widget.dart';
-import './widgets/wishlist_sort_widget.dart';
+import 'widgets/empty_wishlist_widget.dart';
+import 'widgets/wishlist_item_widget.dart';
+import 'widgets/wishlist_search_widget.dart';
+import 'widgets/wishlist_sort_widget.dart';
 import '../../services/data_service.dart';
 import '../../services/auth_service.dart';
 /// Wishlist Screen - Displays saved books collection with management features
